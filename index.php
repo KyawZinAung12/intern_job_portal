@@ -1,4 +1,7 @@
-<?php include 'nav.php'; ?>
+<?php 
+    include 'nav.php'; 
+    include 'Backend/dbconnect.php';
+?>
     <main>
 
         <!-- slider Area Start-->
@@ -316,8 +319,5 @@
         <!-- Testimonial Start -->
         
         <!-- Testimonial End -->
-         
-     
-
     </main>
    <?php include 'footer.php'; ?>
