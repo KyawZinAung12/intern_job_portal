@@ -1,4 +1,10 @@
-<?php include 'nav.php'; ?>
+<?php 
+include 'nav.php'; 
+include 'Backend/dbconnect.php';
+
+$sql = "SELECT job_posts.*, FROM job_posts"
+
+?>
 
     <main>
 
