@@ -17,6 +17,8 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -47,28 +49,60 @@
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">      
+      <hr class="sidebar-divider">   
 
+
+      <!-- Nav Item - JobPost -->
+      <li class="nav-item">
+        <a class="nav-link" href="jobpost_list.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>JoB Post</span></a>
+      </li>   
+      <!-- Divider -->
+      <hr class="sidebar-divider"> 
+
+      
       <!-- Nav Item - Position -->
       <li class="nav-item">
-        <a class="nav-link" href="positon.php">
+        <a class="nav-link" href="position_list.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Position</span></a>
       </li>
 
       <!-- Nav Item - Salary -->
       <li class="nav-item">
-        <a class="nav-link" href="salary.php">
+        <a class="nav-link" href="salary_list.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Salary</span></a>
       </li>
 
+      <!-- Nav Item - Salary -->
+      <li class="nav-item">
+        <a class="nav-link" href="location_list.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Location</span></a>
+      </li>
+
+      <!-- Nav Item - Salary -->
+      <li class="nav-item">
+        <a class="nav-link" href="jobtype_list.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Job_Type</span></a>
+      </li>
+
+       <!-- Divider -->
+      <hr class="sidebar-divider">   
+
+
       <!-- Nav Item - JobPost -->
       <li class="nav-item">
-        <a class="nav-link" href="salary.php">
+        <a class="nav-link" href="job_confirm.php">
           <i class="fas fa-fw fa-table"></i>
-          <span>JoB Post</span></a>
-      </li>
+          <span>Job Confirm</span></a>
+      </li>   
+
+      
+      
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
