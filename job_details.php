@@ -81,7 +81,12 @@ $sql = "SELECT job_posts.*,positions.name as position_name,locations.name as loc
                               <li>Application date : <span><?= date('d M Y',strtotime("+1 month",strtotime($job_post['updated_at']))) ?></span></li>
                           </ul>
                          <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
+                          <?php if (isset($_SESSION['loginuser'])): ?>
+                            <a href="job_request.php?id=<?= $id ?>" class="btn"  onclick="return confirm('Are You Sure?')">Apply Now</a>
+                          <?php endif; ?>
+                          <?php if (!isset($_SESSION['loginuser'])): ?>
+                            <a href="register.php" class="btn">Apply Now</a>
+                          <?php endif; ?>
                          </div>
                        </div>
                         

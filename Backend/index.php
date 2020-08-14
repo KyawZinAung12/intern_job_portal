@@ -45,11 +45,11 @@
 
       <!-- Earnings (Monthly) Card Example -->
       <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
+        <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Job Request</div>
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Job Request</div>
                 <div class="h5 mb-0 font-weight-bold text-danger">
                   <?php  
                     $sql="SELECT COUNT(*) FROM job_requests";
@@ -72,11 +72,11 @@
 
       <!-- Earnings (Monthly) Card Example -->
       <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
+        <div class="card border-left-success shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Confirm Jobs</div>
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Confirm Jobs</div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -196,7 +196,7 @@
                 
                <!--  <a href="position_edit.php?id=<?= $id ?>" class="btn btn-outline-success">Confirm</a> -->
               
-                <a href="status_update.php?id=<?= $id ?>" class="btn btn-outline-warning">Pending</a>
+                <a href="status_update.php?id=<?= $id ?>" class="btn btn-outline-warning" onclick="return confirm('Are You Sure?')">Pending</a>
               
               </td>             
             </tr>

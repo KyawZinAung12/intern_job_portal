@@ -51,7 +51,7 @@
 						<tr>
 							<td><?= $j++ ?></td>
 							<td><?= $name ?></td>
-							<td><img src="<?= $photo ?>" class="img-fluid"></td>
+							<td><img src="<?= $photo ?>" class="img-fluid" style="width: 40px;height: 40px"></td>
 							<td>
 								<a href="position_edit.php?id=<?= $id ?>" class="btn btn-outline-warning"><i class="far fa-edit"></i></a>
 								<a href="position_delete.php?id=<?= $id ?>" class="btn btn-outline-danger" onclick="return confirm('Are You Sure Delete?')"><i class="far fa-trash-alt"></i></a>

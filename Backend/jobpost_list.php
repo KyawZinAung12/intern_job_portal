@@ -22,7 +22,7 @@
 							<th>Salary</th>							
 							<th>Location</th>							
 							<th>Jop_Type</th>							
-							<th>Description</th>							
+							<!-- <th>Description</th>							 -->
 							<th>Action</th>							
 						</tr>
 					</thead>
@@ -33,7 +33,7 @@
 							<th>Salary</th>							
 							<th>Location</th>
 							<th>Jop_Type</th>
-							<th>Description</th>							
+							<!-- <th>Description</th>							 -->
 							<th>Action</th>
 						</tr>
 					</tfoot>
@@ -63,7 +63,7 @@
 							<td><?= $salary ?></td>
 							<td><?= $location ?></td>
 							<td><?= $jobtype ?></td>
-							<td><?= $description ?></td>
+							<!-- <td><?= $description ?></td> -->
 							<td>
 								<a href="jobpost_edit.php?id=<?= $id ?>" class="btn btn-outline-warning"><i class="far fa-edit"></i></a>
 								<a href="jobpost_delete.php?id=<?= $id ?>" class="btn btn-outline-danger" onclick="return confirm('Are You Sure Delete?')"><i class="far fa-trash-alt"></i></a>

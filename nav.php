@@ -29,17 +29,7 @@ ob_start();
    </head>
 
    <body>
-    <!-- Preloader Start -->
-    <!-- <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/logo.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div> -->
+    
     <!-- Preloader Start -->
     <header>
         <!-- Header Start -->
@@ -62,14 +52,14 @@ ob_start();
                                             <li><a href="index.php">Home</a></li>
                                             <li><a href="job_listing.php">Find a Jobs </a></li>
                                             <li><a href="about.html">About</a></li>
-                                            <li><a href="#">Page</a>
+                                            <!-- <li><a href="#">Page</a>
                                                 <ul class="submenu">
                                                     <li><a href="blog.html">Blog</a></li>
                                                     <li><a href="single-blog.html">Blog Details</a></li>
                                                     <li><a href="elements.html">Elements</a></li>
                                                     <li><a href="job_details.html">job Details</a></li>
                                                 </ul>
-                                            </li>
+                                            </li> -->
                                             <li><a href="contact.html">Contact</a></li>
                                             <?php if (isset($_SESSION['loginuser'])): ?>
                                                 <li class="nav-item dropdown">
