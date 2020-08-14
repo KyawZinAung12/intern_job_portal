@@ -1,6 +1,16 @@
 <?php 
     include 'nav.php'; 
     include 'Backend/dbconnect.php';
+
+    $sql = "SELECT job_posts.*,positions.name as position_name,locations.name as location_name,salaries.amount as salary_amount,job_types.type as type FROM job_posts INNER JOIN positions ON job_posts.position_id=positions.id INNER JOIN locations ON job_posts.location_id=locations.id INNER JOIN salaries ON job_posts.salary_id=salaries.id INNER JOIN job_types ON job_posts.type_id=job_types.id LIMIT 5";
+    $stmt=$pdo->prepare($sql);
+    $stmt->execute();
+    $job_posts=$stmt->fetchAll();
+
+    $sql="SELECT * FROM positions";
+    $stmt=$pdo->prepare($sql);
+    $stmt->execute();
+    $positions=$stmt->fetchAll();
 ?>
     <main>
 
@@ -21,12 +31,9 @@
                         <div class="row">
                             <div class="col-xl-8">
                                 <!-- form -->
-                                <form action="search.php">
+                                <form action="job_listing.php">
                                     
-                                        <input type="text" placeholder="Job Tittle or keyword" class="form-control w-50 d-inline" style="height: 55px">
-                                    
-                                   
-                                    
+                                        <input type="text" placeholder="Job Tittle or keyword" class="form-control w-50 d-inline" style="height: 55px" name="search">
                                         <input type="submit" class="btn btn-outline-danger" value="Find JOBS" name="">
                                     	
                                 </form>	
@@ -45,106 +52,32 @@
                     <div class="col-lg-12">
                         <div class="section-tittle text-center">
                             <span>FEATURED TOURS Packages</span>
-                            <h2>Browse Top Categories </h2>
+                            <h2>Browse Top Positions </h2>
                         </div>
                     </div>
                 </div>
                 <div class="row d-flex justify-contnet-center">
+                    <?php  
+                        foreach ($positions as $position):
+                    ?>
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <div class="single-services text-center mb-30">
                             <div class="services-ion">
-                                <span class="flaticon-tour"></span>
+                                <img src="Backend/<?= $position['photo'] ?>" width="60" height="61">
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Design & Creative</a></h5>
-                                <span>(653)</span>
+                               <h5><a href="job_listing.php?pos_id=<?= $position['id'] ?>"><?= $position['name'] ?></a></h5>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-cms"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Design & Development</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-report"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Sales & Marketing</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-app"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Mobile Application</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-helmet"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Construction</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-high-tech"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Information Technology</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-real-estate"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Real Estate</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-content"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Content Writer</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
                 <!-- More Btn -->
                 <!-- Section Button -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="browse-btn2 text-center mt-50">
-                            <a href="job_listing.html" class="border-btn2">Browse All Sectors</a>
+                            <a href="job_listing.php" class="border-btn2">Browse All Sectors</a>
                         </div>
                     </div>
                 </div>
@@ -180,86 +113,29 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
-                        <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                        <?php  
+                                    foreach ($job_posts as $job_post):
+                                ?>
+                                <div class="single-job-items mb-30">
+                                    <div class="job-items">
+                                        <div class="job-tittle job-tittle2">
+                                            <a href="job_details.php?id=<?= $job_post['id'] ?>">
+                                                <h4><?= $job_post['position_name'] ?></h4>
+                                            </a>
+                                            <ul>
+                                                <li><i class="fas fa-map-marker-alt"></i><?= $job_post['location_name'] ?></li>
+                                                <li><?= $job_post['salary_amount'] ?></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="items-link items-link2 f-right">
+                                        <span class="py-3 text-center"><?= $job_post['type'] ?></span>
+                                        <a href="job_details.php?id=<?= $job_post['id'] ?>">Detail</a>
+                                    </div>
                                 </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
-                        <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="assets/img/icon/job-list2.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
-                         <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="assets/img/icon/job-list3.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
-                         <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="assets/img/icon/job-list4.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
+                                <?php 
+                                    endforeach;
+                                ?>
                     </div>
                 </div>
             </div>
