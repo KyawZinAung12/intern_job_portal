@@ -1,4 +1,17 @@
-<?php include 'nav.php'; ?>
+<?php include 'nav.php';
+include 'Backend/dbconnect.php';
+
+
+
+$id=$_GET['id'];
+
+$sql = "SELECT job_posts.*,positions.name as position_name,locations.name as location_name,salaries.amount as salary_amount,job_types.type as type FROM job_posts INNER JOIN positions ON job_posts.position_id=positions.id INNER JOIN locations ON job_posts.location_id=locations.id INNER JOIN salaries ON job_posts.salary_id=salaries.id INNER JOIN job_types ON job_posts.type_id=job_types.id WHERE job_posts.id=:id";
+  $stmt=$pdo->prepare($sql);
+  $stmt->bindParam(':id',$id);
+  $stmt->execute();
+  $job_post=$stmt->fetch(PDO::FETCH_ASSOC);
+  // var_dump($job_post);die();
+?>
 
     <main>
 
@@ -9,7 +22,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>UI/UX Designer</h2>
+                            <h2><?= $job_post['position_name'] ?></h2>
                         </div>
                     </div>
                 </div>
@@ -31,12 +44,11 @@
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
-                                        <h4>Digital Marketer</h4>
+                                        <h4><?= $job_post['position_name'] ?></h4>
                                     </a>
                                     <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
+                                        <li><i class="fas fa-map-marker-alt"></i><?= $job_post['location_name'] ?></li>
+                                        <li><?= $job_post['salary_amount'] ?></li>
                                     </ul>
                                 </div>
                             </div>
@@ -49,33 +61,7 @@
                                 <div class="small-section-tittle">
                                     <h4>Job Description</h4>
                                 </div>
-                                <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p>
-                            </div>
-                            <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Required Knowledge, Skills, and Abilities</h4>
-                                </div>
-                               <ul>
-                                   <li>System Software Development</li>
-                                   <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
-                                   <li>Research and code , libraries, APIs and frameworks</li>
-                                   <li>Strong knowledge on software development life cycle</li>
-                                   <li>Strong problem solving and debugging skills</li>
-                               </ul>
-                            </div>
-                            <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Education + Experience</h4>
-                                </div>
-                               <ul>
-                                   <li>3 or more years of professional design experience</li>
-                                   <li>Direct response email experience</li>
-                                   <li>Ecommerce website design experience</li>
-                                   <li>Familiarity with mobile and web apps preferred</li>
-                                   <li>Experience using Invision a plus</li>
-                               </ul>
+                                <p class="text-justify"><?= $job_post['description'] ?></p>
                             </div>
                         </div>
 
@@ -88,30 +74,17 @@
                                <h4>Job Overview</h4>
                            </div>
                           <ul>
-                              <li>Posted date : <span>12 Aug 2019</span></li>
-                              <li>Location : <span>New York</span></li>
-                              <li>Vacancy : <span>02</span></li>
-                              <li>Job nature : <span>Full time</span></li>
-                              <li>Salary :  <span>$7,800 yearly</span></li>
-                              <li>Application date : <span>12 Sep 2020</span></li>
+                              <li>Posted date : <span><?= date('d M Y',strtotime($job_post['updated_at'])) ?></span></li>
+                              <li>Location : <span><?= $job_post['location_name'] ?></span></li>
+                              <li>Job nature : <span><?= $job_post['type'] ?></span></li>
+                              <li>Salary :  <span><?= $job_post['salary_amount'] ?></span></li>
+                              <li>Application date : <span><?= date('d M Y',strtotime("+1 month",strtotime($job_post['updated_at']))) ?></span></li>
                           </ul>
                          <div class="apply-btn2">
                             <a href="#" class="btn">Apply Now</a>
                          </div>
                        </div>
-                        <div class="post-details4  mb-50">
-                            <!-- Small Section Tittle -->
-                           <div class="small-section-tittle">
-                               <h4>Company Information</h4>
-                           </div>
-                              <span>Colorlib</span>
-                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                            <ul>
-                                <li>Name: <span>Colorlib </span></li>
-                                <li>Web : <span> colorlib.com</span></li>
-                                <li>Email: <span>carrier.colorlib@gmail.com</span></li>
-                            </ul>
-                       </div>
+                        
                     </div>
                 </div>
             </div>
